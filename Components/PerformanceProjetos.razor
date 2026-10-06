@@ -1,0 +1,67 @@
+<DashboardCard Titulo="Performance dos Projetos"
+               Subtitulo="Acompanhamento do progresso dos projetos ativos">
+
+    <Menu>
+        <MudMenuItem>Ver todos os projetos</MudMenuItem>
+        <MudMenuItem>Exportar dados</MudMenuItem>
+    </Menu>
+
+    <ChildContent>
+
+        <MudStack Spacing="4">
+
+            @foreach (var projeto in Projetos)
+            {
+                <MudStack Spacing="1">
+
+                    <MudStack Row="true"
+                              Justify="Justify.SpaceBetween"
+                              AlignItems="AlignItems.Center">
+
+                        <MudStack Row="true"
+                                  Spacing="2"
+                                  AlignItems="AlignItems.Center">
+
+                            <MudAvatar Size="Size.Small"
+                                       Class="@Ui.FundoSuave(projeto.Cor)">
+                                <MudIcon Icon="@projeto.Icone"
+                                         Color="@projeto.Cor"
+                                         Size="Size.Small" />
+                            </MudAvatar>
+
+                            <MudText Typo="Typo.body1">
+                                @projeto.Nome
+                            </MudText>
+
+                        </MudStack>
+
+                        <MudText Typo="Typo.subtitle2">
+                            @projeto.Percentual%
+                        </MudText>
+
+                    </MudStack>
+
+                    <MudProgressLinear Value="@projeto.Percentual"
+                                       Color="@projeto.Cor"
+                                       Rounded="true"
+                                       Size="Size.Small" />
+
+                    <MudText Typo="Typo.caption"
+                             Class="mud-text-secondary">
+                        @projeto.TarefasConcluidas de @projeto.TarefasTotal tarefas concluídas
+                    </MudText>
+
+                </MudStack>
+            }
+
+        </MudStack>
+
+    </ChildContent>
+
+</DashboardCard>
+
+@code {
+    [Parameter, EditorRequired]
+    public IReadOnlyList<ProjetoPerformance> Projetos { get; set; }
+        = Array.Empty<ProjetoPerformance>();
+}

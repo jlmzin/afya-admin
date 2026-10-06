@@ -1,0 +1,68 @@
+<MudPaper Elevation="1" Class="pa-4" Height="100%">
+
+    <MudStack Row="true"
+              Justify="Justify.SpaceBetween"
+              AlignItems="AlignItems.Center"
+              Class="mb-4">
+
+        <div>
+            <MudText Typo="Typo.h6">
+                Atividades Recentes
+            </MudText>
+
+            <MudText Typo="Typo.body2" Class="mud-text-secondary">
+                Últimas ações realizadas na plataforma
+            </MudText>
+        </div>
+
+        <MudButton Variant="Variant.Text"
+                   Color="Color.Primary"
+                   Size="Size.Small">
+            Ver todas
+        </MudButton>
+
+    </MudStack>
+
+    <MudStack Spacing="3">
+
+        @foreach (var atividade in Atividades)
+        {
+            <MudStack Row="true"
+                      Spacing="2"
+                      AlignItems="AlignItems.Center">
+
+                <MudAvatar Size="Size.Medium"
+                           Class="@Ui.FundoSuave(atividade.Cor)">
+
+                    <MudIcon Icon="@atividade.Icone"
+                             Color="@atividade.Cor"
+                             Size="Size.Small" />
+
+                </MudAvatar>
+
+                <div class="flex-grow-1">
+
+                    <MudText Typo="Typo.body2">
+                        <strong>@atividade.Nome</strong>
+                        @atividade.Acao
+                    </MudText>
+
+                    <MudText Typo="Typo.caption"
+                             Class="mud-text-secondary">
+                        @atividade.Tempo
+                    </MudText>
+
+                </div>
+
+            </MudStack>
+        }
+
+    </MudStack>
+
+</MudPaper>
+
+@code {
+    [Parameter, EditorRequired]
+    public IReadOnlyList<Atividade> Atividades { get; set; }
+        = Array.Empty<Atividade>();
+}

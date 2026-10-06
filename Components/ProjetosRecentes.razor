@@ -1,0 +1,129 @@
+<MudPaper Elevation="1" Class="pa-4">
+
+    <MudStack Row="true"
+              Justify="Justify.SpaceBetween"
+              AlignItems="AlignItems.Center"
+              Class="mb-4">
+
+        <div>
+            <MudText Typo="Typo.h6">
+                Projetos Recentes
+            </MudText>
+
+            <MudText Typo="Typo.body2" Class="mud-text-secondary">
+                Acompanhe os projetos mais recentes
+            </MudText>
+        </div>
+
+        <MudButton Variant="Variant.Text"
+                   Color="Color.Primary"
+                   Size="Size.Small">
+            Ver todos
+        </MudButton>
+
+    </MudStack>
+
+    <MudTable Items="@Projetos"
+              Hover="true"
+              Dense="true"
+              Breakpoint="Breakpoint.Sm">
+
+        <HeaderContent>
+
+            <MudTh>Projeto</MudTh>
+            <MudTh>Cliente</MudTh>
+            <MudTh>Responsável</MudTh>
+            <MudTh>Status</MudTh>
+            <MudTh>Progresso</MudTh>
+            <MudTh>Prazo</MudTh>
+
+        </HeaderContent>
+
+        <RowTemplate>
+
+            <MudTd DataLabel="Projeto">
+
+                <MudStack Row="true"
+                          Spacing="2"
+                          AlignItems="AlignItems.Center">
+
+                    <MudAvatar Size="Size.Small"
+                               Class="@Ui.FundoSuave(context.Cor)">
+
+                        <MudIcon Icon="@context.Icone"
+                                 Color="@context.Cor"
+                                 Size="Size.Small" />
+
+                    </MudAvatar>
+
+                    <MudText Typo="Typo.body2">
+                        @context.Nome
+                    </MudText>
+
+                </MudStack>
+
+            </MudTd>
+
+            <MudTd DataLabel="Cliente">
+                @context.Cliente
+            </MudTd>
+
+            <MudTd DataLabel="Responsável">
+                @context.Responsavel
+            </MudTd>
+
+            <MudTd DataLabel="Status">
+
+                <MudChip T="string"
+                         Color="@context.StatusCor"
+                         Size="Size.Small"
+                         Variant="Variant.Text">
+
+                    @context.Status
+
+                </MudChip>
+
+            </MudTd>
+
+            <MudTd DataLabel="Progresso">
+
+                <MudStack Row="true"
+                          Spacing="2"
+                          AlignItems="AlignItems.Center"
+                          Style="min-width: 130px;">
+
+                    <MudProgressLinear Value="@context.Progresso"
+                                       Color="Color.Primary"
+                                       Rounded="true"
+                                       Size="Size.Small"
+                                       Class="flex-grow-1" />
+
+                    <MudText Typo="Typo.caption">
+                        @context.Progresso%
+                    </MudText>
+
+                </MudStack>
+
+            </MudTd>
+
+            <MudTd DataLabel="Prazo">
+                @context.Prazo
+            </MudTd>
+
+        </RowTemplate>
+
+        <NoRecordsContent>
+            <MudText Class="pa-4">
+                Nenhum projeto encontrado.
+            </MudText>
+        </NoRecordsContent>
+
+    </MudTable>
+
+</MudPaper>
+
+@code {
+    [Parameter, EditorRequired]
+    public IReadOnlyList<ProjetoRecente> Projetos { get; set; }
+        = Array.Empty<ProjetoRecente>();
+}
