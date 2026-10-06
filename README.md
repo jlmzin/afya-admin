@@ -139,3 +139,17 @@ O projeto foi desenvolvido utilizando Git, com commits realizados durante as eta
 - Adicionar paginacao e ordenacao na tabela
 - Persistir configuracoes do usuario
 - Criar mais indicadores e visualizacoes
+
+## Screenshots
+
+### Dashboard
+
+![Dashboard principal](wwwroot/images/dashboard.png)
+
+### Inspecao do KPI Receita com DevTools
+
+![Inspecao do KPI Receita](wwwroot/images/devtools-kpi.png)
+
+### Inspecao do botao Novo Projeto com DevTools
+
+![Inspecao do botao Novo Projeto](wwwroot/images/devtools-botao.png)
